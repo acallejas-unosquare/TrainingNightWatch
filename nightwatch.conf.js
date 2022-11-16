@@ -15,6 +15,7 @@
 module.exports = {
     // An array of folders (excluding subfolders) where your tests are located;
     // if this is not specified, the test source must be passed as the second argument to the test runner.
+    skip_testcases_on_fail: false,
     src_folders: ["Tests"],
   
     // See https://nightwatchjs.org/guide/concepts/page-object-model.html
@@ -31,6 +32,8 @@ module.exports = {
     
     // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
     globals_path : '',
+
+    
   
     webdriver: {
       "start_process": true,
