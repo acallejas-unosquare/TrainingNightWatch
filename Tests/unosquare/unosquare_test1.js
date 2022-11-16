@@ -1,17 +1,18 @@
 module.exports = {
     '@tags': ['test1'],
     'Demo test unosquare': function (browser) {
-        browser
-        .windowMaximize()
-        .url('https://www.unosquare.com')
+        var unosquare = browser.page.mainpage();
+
+        unosquare
+        .navigate()
         .waitForElementVisible('body')
-        .assert.attributeContains("li a[href ='/Services']", 'class', 'nav')
-        .assert.attributeEquals("li a[href ='/Services']", 'class', 'nav-link')
-        .waitForElementVisible("li a[href ='/Services']")
-        .assert.textContains("li a[href= '/Services']", "SERVICES")
-        .assert.cssProperty("li a[href = '/About']", 'display', 'block')
-        .assert.not.cssProperty("li a[href = '/About']", 'font-size', '12px')
-        .click("a[href='/Services']")
+        .assert.attributeContains("@servicesMenu", 'class', 'nav')
+        .assert.attributeEquals("@servicesMenu", 'class', 'nav-link')
+        .waitForElementVisible("@servicesMenu")
+        .assert.textContains("@servicesMenu", "SERVICES")
+        .assert.cssProperty("@aboutMenu", 'display', 'block')
+        .assert.not.cssProperty("@aboutMenu", 'font-size', '12px')
+        .click("@servicesMenu")
         .assert.visible("h2.subtitle")
         .assert.title("Software Engineering Services | Agile Software Development Services")
         .assert.urlContains("Services")
