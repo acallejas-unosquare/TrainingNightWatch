@@ -1,11 +1,16 @@
+function getData() {
+  return require('../../dataExternal/unosquareForm'); // Using the correct path is important
+  };
+
 var validateContactUs = {
   contactUnosquare: function() {
     this.api.pause(1000);
+    const form = getData();
     return this.waitForElementVisible('@contactusMenu', 1000)
       .click('@contactusMenu')
-      .setValue('@companyTextField', 'QA CoE course')
-      .setValue('@phoneTextField', '3300000000')
-      .setValue('@messageTextArea', 'This is a Random Text used in a Course')
+      .setValue('@companyTextField', form.company)
+      .setValue('@phoneTextField', form.phone)
+      .setValue('@messageTextArea', form.message)
       .click('@submitBtn')
       .waitForElementVisible('@nameWarningMsg')
   }
@@ -41,6 +46,9 @@ module.exports = {
     },
     servicesMenu: {
       selector: "li a[href = '/Services']"
+    },
+    blogMenu: {
+      selector: "li:nth-child(8) > a"
     },
     companyTextField: {
       selector: "input.hs-input[name = 'company']"
